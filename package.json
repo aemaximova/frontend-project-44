@@ -11,9 +11,11 @@
   "type": "module",
   "bin": {
     "brain-games": "bin/brain-games.js",
-    "brain-even": "bin/brain-even.js"
+    "brain-even": "bin/brain-even.js",
+    "brain-calc": "bin/brain-calc.js"
   },
   "dependencies": {
+    "mathjs": "^11.10.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
