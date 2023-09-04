@@ -17,7 +17,7 @@ const app = (getQuestion, getCorrectAnswer, name) => {
     }
   }
   if (win) {
-    console.log(`Congratulations, ${name}`);
+    console.log(`Congratulations, ${name}!`);
   }
 };
 
