@@ -1,8 +1,12 @@
 import readlineSync from 'readline-sync';
 
-const app = (getQuestion, getCorrectAnswer, name) => {
-  let win = true;
-  for (let i = 0; i < 3; i += 1) {
+const app = (getQuestion, getCorrectAnswer, gameRule) => {
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${name}!`);
+  console.log(gameRule);
+  const numberOfRounds = 3;
+  for (let i = 0; i < numberOfRounds; i += 1) {
     const randomExpression = getQuestion();
     console.log(`Question: ${randomExpression}`);
     const answer = readlineSync.question('Your answer: ');
@@ -12,13 +16,10 @@ const app = (getQuestion, getCorrectAnswer, name) => {
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
       console.log(`Let's try again, ${name}!`);
-      win = false;
-      break;
+      return;
     }
   }
-  if (win) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  console.log(`Congratulations, ${name}!`);
 };
 
 export default app;
