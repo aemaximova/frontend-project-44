@@ -12,7 +12,7 @@ const getCorrectAnswer = (randomInt) => {
   for (let i = 2; i <= Math.ceil(Math.sqrt(randomIntN)); i += 1) {
     if (randomIntN % i === 0) {
       isPrime = 'no';
-      break;
+      return isPrime;
     }
   }
   return isPrime;
