@@ -25,6 +25,8 @@ const getCorrectAnswer = (randomExpression) => {
     case '*':
       result = x * y;
       break;
+    default:
+      result = 0;
   }
   return result;
 };

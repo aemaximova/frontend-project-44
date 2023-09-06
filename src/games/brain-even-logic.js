@@ -1,6 +1,5 @@
 import app from '../index.js';
 import getRandomInt from '../utils.js';
-import { gamma } from 'mathjs';
 
 const getQuestion = () => {
   const randomInt = getRandomInt(1, 100);
