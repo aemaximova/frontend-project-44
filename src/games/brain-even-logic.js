@@ -4,7 +4,7 @@ import { gamma } from 'mathjs';
 
 const getQuestion = () => {
   const randomInt = getRandomInt(1, 100);
-  return randomInt;
+  return String(randomInt);
 };
 
 const getCorrectAnswer = (randomInt) => {
