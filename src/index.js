@@ -7,7 +7,7 @@ const app = (getQuestion, getCorrectAnswer, gameRule) => {
   console.log(gameRule);
   const numberOfRounds = 3;
   for (let i = 0; i < numberOfRounds; i += 1) {
-    const randomExpression = getQuestion();
+    const randomExpression = String(getQuestion());
     console.log(`Question: ${randomExpression}`);
     const answer = readlineSync.question('Your answer: ');
     const correctAnswer = getCorrectAnswer(randomExpression);
