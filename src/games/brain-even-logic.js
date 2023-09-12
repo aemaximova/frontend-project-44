@@ -1,22 +1,22 @@
 import app from '../index.js';
 import getRandomInt from '../utils.js';
 
-const getQuestion = () => {
-  const randomInt = getRandomInt(1, 100);
-  return randomInt;
-};
+const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
+const numberOfRounds = 3;
 
-const getCorrectAnswer = (randomInt) => {
-  let isEven = 'no';
-  if (randomInt % 2 === 0) {
-    isEven = 'yes';
+const getQuestionAnswerPairs = () => {
+  const questionAnswerPair = [];
+  for (let i = 0; i < numberOfRounds; i += 1) {
+    const question = getRandomInt(1, 100);
+    const answer = question % 2 === 0 ? 'yes' : 'no';
+    questionAnswerPair[i] = [question, answer];
   }
-  return isEven;
+  return questionAnswerPair;
 };
 
 const brainEven = () => {
-  const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
-  app(getQuestion, getCorrectAnswer, gameRule);
+  const questionAnswerPairs = getQuestionAnswerPairs();
+  app(questionAnswerPairs, gameRule);
 };
 
 export default brainEven;

@@ -1,36 +1,42 @@
 import app from '../index.js';
 import getRandomInt from '../utils.js';
 
-const getQuestion = () => {
-  const leftValue = getRandomInt(1, 100);
-  const rightValue = getRandomInt(1, 100);
-  return `${leftValue} ${rightValue}`;
+const gameRule = 'Find the greatest common divisor of given numbers.';
+const numberOfRounds = 3;
+
+const calculateGCD = (firstNumber, secondNumber) => {
+  let a = firstNumber;
+  let b = secondNumber;
+  while ((a !== 0) && (b !== 0)) {
+    if (a > b) {
+      a %= b;
+    } else {
+      b %= a;
+    }
+  }
+  return a + b;
 };
 
-const getCorrectAnswer = (randomExpression) => {
-  const separator = ' ';
-  const numberArr = randomExpression.split(separator);
-  let firstNumber = Number(numberArr[0]);
-  let secondNumber = Number(numberArr[1]);
-  if (secondNumber > firstNumber) {
-    const temp = firstNumber;
-    firstNumber = secondNumber;
-    secondNumber = temp;
+const getQuestionAnswerPair = () => {
+  const firstNumber = getRandomInt(1, 100);
+  const secondNumber = getRandomInt(1, 100);
+  const question = `${firstNumber} ${secondNumber}`;
+  const answer = calculateGCD(firstNumber, secondNumber);
+  return [question, answer];
+};
+
+const getQuestionAnswerPairs = () => {
+  const questionAnswerPairs = [];
+  for (let i = 0; i < numberOfRounds; i += 1) {
+    const questionAnswerPair = getQuestionAnswerPair();
+    questionAnswerPairs[i] = questionAnswerPair;
   }
-  let quotient = Math.trunc(firstNumber / secondNumber);
-  let remainder = firstNumber - secondNumber * quotient;
-  while (remainder !== 0) {
-    firstNumber = secondNumber;
-    secondNumber = remainder;
-    quotient = Math.trunc(firstNumber / secondNumber);
-    remainder = firstNumber - secondNumber * quotient;
-  }
-  return secondNumber;
+  return questionAnswerPairs;
 };
 
 const brainGCD = () => {
-  const gameRule = 'Find the greatest common divisor of given numbers.';
-  app(getQuestion, getCorrectAnswer, gameRule);
+  const questionAnswerPairs = getQuestionAnswerPairs();
+  app(questionAnswerPairs, gameRule);
 };
 
 export default brainGCD;

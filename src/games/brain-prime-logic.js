@@ -1,26 +1,37 @@
 import app from '../index.js';
 import getRandomInt from '../utils.js';
 
-const getQuestion = () => {
-  const randomInt = getRandomInt(2, 100);
-  return randomInt;
-};
+const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const numberOfRounds = 3;
 
-const getCorrectAnswer = (randomInt) => {
+const isPrime = (randomInt) => {
   const randomIntN = Number(randomInt);
-  let isPrime = 'yes';
   for (let i = 2; i <= Math.ceil(Math.sqrt(randomIntN)); i += 1) {
     if (randomIntN % i === 0) {
-      isPrime = 'no';
-      return isPrime;
+      return false;
     }
   }
-  return isPrime;
+  return true;
+};
+
+const getQuestionAnswerPair = () => {
+  const randomInt = getRandomInt(2, 100);
+  const answer = isPrime(randomInt);
+  return [randomInt, answer ? 'yes' : 'no'];
+};
+
+const getQuestionAnswerPairs = () => {
+  const questionAnswerPairs = [];
+  for (let i = 0; i < numberOfRounds; i += 1) {
+    const questionAnswerPair = getQuestionAnswerPair();
+    questionAnswerPairs[i] = questionAnswerPair;
+  }
+  return questionAnswerPairs;
 };
 
 const brainPrime = () => {
-  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  app(getQuestion, getCorrectAnswer, gameRule);
+  const questionAnswerPairs = getQuestionAnswerPairs();
+  app(questionAnswerPairs, gameRule);
 };
 
 export default brainPrime;
