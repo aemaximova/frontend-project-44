@@ -1,50 +1,39 @@
-import app from '../index.js';
+import { runGame, numberOfRounds } from '../index.js';
 import getRandomInt from '../utils.js';
 
 const gameRule = 'What is the result of the expression?';
-const numberOfRounds = 3;
 
-const performOperation = (x, y, operation) => {
-  let result = 0;
+const calculate = (x, y, operation) => {
   switch (operation) {
     case '+':
-      result = x + y;
-      break;
+      return x + y;
     case '-':
-      result = x - y;
-      break;
+      return x - y;
     case '*':
-      result = x * y;
-      break;
+      return x * y;
     default:
-      result = 0;
+      throw new Error('Error in expression');
   }
-  return result;
 };
 
-const getQuestionAnswerPair = () => {
+const getRoundData = () => {
   const operationsArr = ['+', '-', '*'];
   const x = getRandomInt(1, 10);
   const y = getRandomInt(1, 10);
   const index = getRandomInt(0, operationsArr.length);
   const operation = operationsArr[index];
   const question = `${x} ${operation} ${y}`;
-  const answer = performOperation(x, y, operation);
-  return [question, answer];
-};
-
-const getQuestionAnswerPairs = () => {
-  const questionAnswerPairs = [];
-  for (let i = 0; i < numberOfRounds; i += 1) {
-    const questionAnswerPair = getQuestionAnswerPair();
-    questionAnswerPairs[i] = questionAnswerPair;
-  }
-  return questionAnswerPairs;
+  const answer = calculate(x, y, operation);
+  return [question, String(answer)];
 };
 
 const brainCalc = () => {
-  const questionAnswerPairs = getQuestionAnswerPairs();
-  app(questionAnswerPairs, gameRule);
+  const allRoundsData = [];
+  for (let i = 0; i < numberOfRounds; i += 1) {
+    const roundData = getRoundData();
+    allRoundsData[i] = roundData;
+  }
+  runGame(allRoundsData, gameRule);
 };
 
 export default brainCalc;

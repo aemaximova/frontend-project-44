@@ -1,8 +1,7 @@
-import app from '../index.js';
+import { runGame, numberOfRounds } from '../index.js';
 import getRandomInt from '../utils.js';
 
 const gameRule = 'Find the greatest common divisor of given numbers.';
-const numberOfRounds = 3;
 
 const calculateGCD = (firstNumber, secondNumber) => {
   let a = firstNumber;
@@ -17,26 +16,21 @@ const calculateGCD = (firstNumber, secondNumber) => {
   return a + b;
 };
 
-const getQuestionAnswerPair = () => {
+const getRoundData = () => {
   const firstNumber = getRandomInt(1, 100);
   const secondNumber = getRandomInt(1, 100);
   const question = `${firstNumber} ${secondNumber}`;
   const answer = calculateGCD(firstNumber, secondNumber);
-  return [question, answer];
-};
-
-const getQuestionAnswerPairs = () => {
-  const questionAnswerPairs = [];
-  for (let i = 0; i < numberOfRounds; i += 1) {
-    const questionAnswerPair = getQuestionAnswerPair();
-    questionAnswerPairs[i] = questionAnswerPair;
-  }
-  return questionAnswerPairs;
+  return [question, String(answer)];
 };
 
 const brainGCD = () => {
-  const questionAnswerPairs = getQuestionAnswerPairs();
-  app(questionAnswerPairs, gameRule);
+  const allRoundsData = [];
+  for (let i = 0; i < numberOfRounds; i += 1) {
+    const roundData = getRoundData();
+    allRoundsData[i] = roundData;
+  }
+  runGame(allRoundsData, gameRule);
 };
 
 export default brainGCD;
