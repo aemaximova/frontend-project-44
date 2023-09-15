@@ -16,7 +16,7 @@ const getRoundData = () => {
   const firstNumber = getRandomInt(1, 100);
   const commonDifference = getRandomInt(1, 10);
   const hiddenElementPosition = getRandomInt(0, 9);
-  const progressionArr = generateArithmeticProgression(firstNumber, commonDifference)
+  const progressionArr = generateArithmeticProgression(firstNumber, commonDifference);
   const answer = progressionArr[hiddenElementPosition];
   progressionArr[hiddenElementPosition] = '..';
   let question = '';
