@@ -8,10 +8,9 @@ const runGame = (allRoundsData, gameRule) => {
   console.log(`Hello, ${name}!`);
   console.log(gameRule);
   for (let i = 0; i < numberOfRounds; i += 1) {
-    const randomExpression = allRoundsData[i][0];
-    console.log(`Question: ${randomExpression}`);
+    const [question, correctAnswer] = allRoundsData[i];
+    console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
-    const correctAnswer = allRoundsData[i][1];
     if (answer === correctAnswer) {
       console.log('Correct!');
     } else {

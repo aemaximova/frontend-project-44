@@ -27,7 +27,7 @@ const getRoundData = () => {
   return [question, String(answer)];
 };
 
-const brainCalc = () => {
+const runBrainCalc = () => {
   const allRoundsData = [];
   for (let i = 0; i < numberOfRounds; i += 1) {
     const roundData = getRoundData();
@@ -36,4 +36,4 @@ const brainCalc = () => {
   runGame(allRoundsData, gameRule);
 };
 
-export default brainCalc;
+export default runBrainCalc;

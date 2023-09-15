@@ -5,7 +5,7 @@ const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 const isEven = (randomInt) => randomInt % 2 === 0;
 
-const brainEven = () => {
+const runBrainEven = () => {
   const allRoundsData = [];
   for (let i = 0; i < numberOfRounds; i += 1) {
     const question = getRandomInt(1, 100);
@@ -15,4 +15,4 @@ const brainEven = () => {
   runGame(allRoundsData, gameRule);
 };
 
-export default brainEven;
+export default runBrainEven;
