@@ -23,7 +23,7 @@ const getRoundData = () => {
   for (let i = 0; i < progressionLength; i += 1) {
     question = `${question} ${progressionArr[i]}`;
   }
-  return [question, String(answer)];
+  return [question.trim(), String(answer)];
 };
 
 const runBrainProgression = () => {
