@@ -19,11 +19,8 @@ const getRoundData = () => {
   const progressionArr = generateArithmeticProgression(firstNumber, commonDifference);
   const answer = progressionArr[hiddenElementPosition];
   progressionArr[hiddenElementPosition] = '..';
-  let question = '';
-  for (let i = 0; i < progressionLength; i += 1) {
-    question = `${question} ${progressionArr[i]}`;
-  }
-  return [question.trim(), String(answer)];
+  const question = progressionArr.join(' ');
+  return [question, String(answer)];
 };
 
 const runBrainProgression = () => {
